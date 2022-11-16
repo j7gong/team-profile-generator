@@ -53,6 +53,8 @@ GIVEN a command-line application that accepts user input
 
 https://watch.screencastify.com/v/b53BhyMfYYjFGtJwBPfF
 
+![GitHub Logo](/utils/applicationImg.JPG)
+
 ## **Contribution** 
 
 Made with by ❤️ Jingsi Gong
