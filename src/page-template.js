@@ -1,11 +1,11 @@
-const generateMember = member => {
+const generateMember = ( member, role) => {
     var special = '';
 
-    if(memeber.role == 'Manager') {
+    if(role == 'Manager') {
         special = member.officeNumber;
-    } else if (memeber.role == 'Intern') {
+    } else if (role == 'Intern') {
         special = member.school;
-    } else if (memeber.role == 'Engineer') {
+    } else if (role == 'Engineer') {
         special = member.github;
     }
 
@@ -13,11 +13,11 @@ const generateMember = member => {
     <div class="col-3 card box-shadow">
         <div class="card-header pt-3 pl-4">
             <p>${member.name}</p>
-            <p>Role: Manager</p>
+            <p>${role}</p>
         </div>
         <div class="card-body p-4">
-            <div class="border-blue">${memeber.id}</div>
-            <div class="border-blue">${memeber.email}</div>
+            <div class="border-blue">${member.id}</div>
+            <div class="border-blue">${member.email}</div>
             <div class="border-blue">${special}</div>
             
         </div>
@@ -29,9 +29,9 @@ module.exports = templateData => {
     // destructure page data by section
     const { managers, engineers, interns} = templateData;
     // console.log(templateData);
-    console.log(managers);
-    console.log(interns);
-    console.log(engineers);
+    console.log(managers); console.log(managers[0]);
+    // console.log(interns);
+    // console.log(engineers);
 
     return `
     <!DOCTYPE html>
@@ -52,7 +52,8 @@ module.exports = templateData => {
             <h1 class="page-title text-light py-2 px-3">My Team</h1>
         </header>
         <main class="flex-row my-5 justify-space-around">
-            ${templateData}
+            ${generateMember(managers[0], 'Manager')}
+            
         </main>
     </body>
     </html>
