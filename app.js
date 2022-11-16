@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
-const {generateHTML} = require('./utils/generateHTML.js');
+const {writeFile, copyFile} = require('./utils/generateHTML');
 
 const promptUser = () => {
     console.log(`
@@ -255,9 +255,22 @@ const promptType = dataType => {
 
 promptUser()
     .then(promptType)
-    .then(res=> {
-        console.log(res);
+    // .then(res=> {
+    //     console.log(res);
+    // })
+    .then(data => {
+      return generatePage(data);
+    })
+    .then(pageHTML => {
+      return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+      console.log(writeFileResponse);
+      return copyFile();
+    })
+    .then(copyFileResponse => {
+      console.log(copyFileResponse);
     })
     .catch(err => {
-        console.log(err);
+      console.log(err);
     });
