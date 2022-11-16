@@ -4,7 +4,7 @@
   "description": "AS A manager",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/j7gong/team-profile-generator/issues"
   },
-  "homepage": "https://github.com/j7gong/team-profile-generator#readme"
+  "homepage": "https://github.com/j7gong/team-profile-generator#readme",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
