@@ -7,9 +7,9 @@ const generateEngineer = (member) => {
             <p>Engineer</p>
         </div>
         <div class="card-body p-4">
-            <div class="border-blue">${member.id}</div>
-            <div class="border-blue">${member.email}</div>
-            <div class="border-blue">${member.github}</div>
+            <div class="border-blue">ID: ${member.id}</div>
+            <div class="border-blue">Email: ${member.email}</div>
+            <div class="border-blue">Github: ${member.github}</div>
             
         </div>
     </div>
@@ -24,9 +24,9 @@ const generateIntern = (member) => {
             <p>Intern</p>
         </div>
         <div class="card-body p-4">
-            <div class="border-blue">${member.id}</div>
-            <div class="border-blue">${member.email}</div>
-            <div class="border-blue">${member.school}</div>
+            <div class="border-blue">ID: ${member.id}</div>
+            <div class="border-blue">Email: ${member.email}</div>
+            <div class="border-blue">School: ${member.school}</div>
             
         </div>
     </div>
@@ -41,9 +41,9 @@ const generateManager = ( member) => {
             <p>Manager</p>
         </div>
         <div class="card-body p-4">
-            <div class="border-blue">${member.id}</div>
-            <div class="border-blue">${member.email}</div>
-            <div class="border-blue">${member.officeNumber}</div>
+            <div class="border-blue">ID: ${member.id}</div>
+            <div class="border-blue">Email: ${member.email}</div>
+            <div class="border-blue">OfficeNumber: ${member.officeNumber}</div>
             
         </div>
     </div>
