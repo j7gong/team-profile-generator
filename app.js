@@ -6,13 +6,16 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const promptUser = () => {
+const promptUser = dataManager => {
     console.log(`
     =================
     Let's start to add your team info!
     =================
     `);
     // If there's no 'projects' array property, create one
+    if (!dataManager.managers) {
+      dataManager.managers = [];
+  }
     return inquirer.prompt([
         {
             type: 'input',
@@ -69,7 +72,8 @@ const promptUser = () => {
     ])
     .then(({mgname, mgid, mgemail, mgnumber})=> {
       this.manager = new Manager(mgname, mgid, mgemail, mgnumber);
-      return this.manager;
+      dataManager.managers.push(this.manager);
+      return dataManager;
     })
 };
 
@@ -264,24 +268,24 @@ const promptType = dataType => {
     });
 };
 
-promptUser()
+promptUser([])
     .then(promptType)
-    .then(res=> {
-        console.log(res);
+    // .then(res=> {
+    //     console.log(res);
+    // })
+    .then(data => {
+      return generatePage(data);
     })
-    // .then(data => {
-    //   return generatePage(data);
-    // })
-    // .then(pageHTML => {
-    //   return writeFile(pageHTML);
-    // })
-    // .then(writeFileResponse => {
-    //   console.log(writeFileResponse);
-    //   return copyFile();
-    // })
-    // .then(copyFileResponse => {
-    //   console.log(copyFileResponse);
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // });
+    .then(pageHTML => {
+      return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+      console.log(writeFileResponse);
+      return copyFile();
+    })
+    .then(copyFileResponse => {
+      console.log(copyFileResponse);
+    })
+    .catch(err => {
+      console.log(err);
+    });

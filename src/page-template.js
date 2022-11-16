@@ -1,7 +1,37 @@
+const generateMember = member => {
+    var special = '';
+
+    if(memeber.role == 'Manager') {
+        special = member.officeNumber;
+    } else if (memeber.role == 'Intern') {
+        special = member.school;
+    } else if (memeber.role == 'Engineer') {
+        special = member.github;
+    }
+
+    return `
+    <div class="col-3 card box-shadow">
+        <div class="card-header pt-3 pl-4">
+            <p>${member.name}</p>
+            <p>Role: Manager</p>
+        </div>
+        <div class="card-body p-4">
+            <div class="border-blue">${memeber.id}</div>
+            <div class="border-blue">${memeber.email}</div>
+            <div class="border-blue">${special}</div>
+            
+        </div>
+    </div>
+    `
+};
 // export function to generate entire page
 module.exports = templateData => {
     // destructure page data by section
-    const { projects, about, ...header } = templateData;
+    const { managers, engineers, interns} = templateData;
+    // console.log(templateData);
+    console.log(managers);
+    console.log(interns);
+    console.log(engineers);
 
     return `
     <!DOCTYPE html>
@@ -22,17 +52,7 @@ module.exports = templateData => {
             <h1 class="page-title text-light py-2 px-3">My Team</h1>
         </header>
         <main class="flex-row my-5 justify-space-around">
-        <div class="col-3 card box-shadow">
-            <div class="card-header pt-3 pl-4">
-                <p>ManagerName</p>
-                <p>Role: Manager</p>
-            </div>
-            <div class="card-body p-4">
-                <div class="border-blue">ID</div>
-                <div class="border-blue">Email</div>
-                <div class="border-blue">OfficeNumber</div>
-            </div>
-        </div>
+            ${templateData}
         </main>
     </body>
     </html>
