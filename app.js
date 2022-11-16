@@ -2,7 +2,12 @@ const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
 const {writeFile, copyFile} = require('./utils/generateHTML');
 
-const promptUser = () => {
+const Employee = require('./lib/Employee');
+// const Manager = require('./Manager');
+// const Engineer = require('./Engineer');
+// const Intern = require('./Intern');
+
+const promptUser = dataManager => {
     console.log(`
     =================
     Let's start to add your team info!
@@ -63,6 +68,10 @@ const promptUser = () => {
           }
         }
     ])
+    .then(({mgname, mgid, mgemail})=> {
+      this.employee = new Employee(mgname, mgid, mgemail);
+      console.log(this.employee);
+    })
 };
 
 const promptIntern = dataIntern => {
