@@ -2,12 +2,11 @@ const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
 const {writeFile, copyFile} = require('./utils/generateHTML');
 
-const Employee = require('./lib/Employee');
-// const Manager = require('./Manager');
-// const Engineer = require('./Engineer');
-// const Intern = require('./Intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
-const promptUser = dataManager => {
+const promptUser = () => {
     console.log(`
     =================
     Let's start to add your team info!
@@ -68,9 +67,9 @@ const promptUser = dataManager => {
           }
         }
     ])
-    .then(({mgname, mgid, mgemail})=> {
-      this.employee = new Employee(mgname, mgid, mgemail);
-      console.log(this.employee);
+    .then(({mgname, mgid, mgemail, mgnumber})=> {
+      this.manager = new Manager(mgname, mgid, mgemail, mgnumber);
+      return this.manager;
     })
 };
 
@@ -144,10 +143,11 @@ const promptIntern = dataIntern => {
             default: false
         }
     ])
-    .then(data => {
-        dataIntern.interns.push(data);
+    .then(({internname, internid, internemail, internschool, confirmAddMember}) => {
+        this.intern = new Intern(internname, internid, internemail, internschool);
+        dataIntern.interns.push(this.intern);
         // console.log(dataIntern);
-        if (data.confirmAddMember) {
+        if (confirmAddMember) {
             return promptType(dataIntern);
         } else {
             return dataIntern;}
@@ -224,10 +224,11 @@ const promptEng = dataEng => {
             default: false
         }
     ])
-    .then(data => {
-        dataEng.engineers.push(data);
-        // console.log(dataEng);
-        if (data.confirmAddMember) {
+    .then(({engname, engid, engemail, engusername, confirmAddMember}) => {
+        this.engineer = new Engineer(engname, engid, engemail, engusername);
+        dataEng.engineers.push(this.engineer);
+
+        if (confirmAddMember) {
             return promptType(dataEng);
         } else {
             return dataEng;}
@@ -252,6 +253,7 @@ const promptType = dataType => {
         }
     ])
     .then(data => {
+      // console.log(data);
         dataType.type.push(data);
         // console.log(data);
         if(data.type == 'Intern') {
@@ -264,22 +266,22 @@ const promptType = dataType => {
 
 promptUser()
     .then(promptType)
-    // .then(res=> {
-    //     console.log(res);
+    .then(res=> {
+        console.log(res);
+    })
+    // .then(data => {
+    //   return generatePage(data);
     // })
-    .then(data => {
-      return generatePage(data);
-    })
-    .then(pageHTML => {
-      return writeFile(pageHTML);
-    })
-    .then(writeFileResponse => {
-      console.log(writeFileResponse);
-      return copyFile();
-    })
-    .then(copyFileResponse => {
-      console.log(copyFileResponse);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    // .then(pageHTML => {
+    //   return writeFile(pageHTML);
+    // })
+    // .then(writeFileResponse => {
+    //   console.log(writeFileResponse);
+    //   return copyFile();
+    // })
+    // .then(copyFileResponse => {
+    //   console.log(copyFileResponse);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
