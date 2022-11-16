@@ -51,6 +51,8 @@ GIVEN a command-line application that accepts user input
 
 ## **Video of User Flow**
 
+https://watch.screencastify.com/v/b53BhyMfYYjFGtJwBPfF
+
 ## **Contribution** 
 
 Made with by ❤️ Jingsi Gong
